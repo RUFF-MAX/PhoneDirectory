@@ -30,103 +30,18 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            this.MaiMenuStrip = new System.Windows.Forms.MenuStrip();
-            this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.справочникиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.контактыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.адресаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.организацииToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.группыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.номераТелефоновToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.помощьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.оПрограммеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MainToolStrip = new System.Windows.Forms.ToolStrip();
             this.ContactToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.GroupToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.SeparatorToolStripButton = new System.Windows.Forms.ToolStripSeparator();
             this.ExitToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.СontextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.обновитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.обновитьToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.выходToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.SeparatorToolStripButton = new System.Windows.Forms.ToolStripSeparator();
-            this.MaiMenuStrip.SuspendLayout();
             this.MainToolStrip.SuspendLayout();
             this.СontextMenuStrip.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // MaiMenuStrip
-            // 
-            this.MaiMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.файлToolStripMenuItem,
-            this.справочникиToolStripMenuItem,
-            this.помощьToolStripMenuItem});
-            this.MaiMenuStrip.Location = new System.Drawing.Point(0, 0);
-            this.MaiMenuStrip.Name = "MaiMenuStrip";
-            this.MaiMenuStrip.Size = new System.Drawing.Size(884, 24);
-            this.MaiMenuStrip.TabIndex = 0;
-            this.MaiMenuStrip.Text = "DataBaseStrip";
-            // 
-            // файлToolStripMenuItem
-            // 
-            this.файлToolStripMenuItem.Name = "файлToolStripMenuItem";
-            this.файлToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
-            this.файлToolStripMenuItem.Text = "Файл";
-            // 
-            // справочникиToolStripMenuItem
-            // 
-            this.справочникиToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.контактыToolStripMenuItem,
-            this.адресаToolStripMenuItem,
-            this.организацииToolStripMenuItem,
-            this.группыToolStripMenuItem,
-            this.номераТелефоновToolStripMenuItem});
-            this.справочникиToolStripMenuItem.Name = "справочникиToolStripMenuItem";
-            this.справочникиToolStripMenuItem.Size = new System.Drawing.Size(94, 20);
-            this.справочникиToolStripMenuItem.Text = "Справочники";
-            // 
-            // контактыToolStripMenuItem
-            // 
-            this.контактыToolStripMenuItem.Name = "контактыToolStripMenuItem";
-            this.контактыToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
-            this.контактыToolStripMenuItem.Text = "Контакты";
-            // 
-            // адресаToolStripMenuItem
-            // 
-            this.адресаToolStripMenuItem.Name = "адресаToolStripMenuItem";
-            this.адресаToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
-            this.адресаToolStripMenuItem.Text = "Адреса";
-            // 
-            // организацииToolStripMenuItem
-            // 
-            this.организацииToolStripMenuItem.Name = "организацииToolStripMenuItem";
-            this.организацииToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
-            this.организацииToolStripMenuItem.Text = "Организации";
-            // 
-            // группыToolStripMenuItem
-            // 
-            this.группыToolStripMenuItem.Name = "группыToolStripMenuItem";
-            this.группыToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
-            this.группыToolStripMenuItem.Text = "Группы";
-            // 
-            // номераТелефоновToolStripMenuItem
-            // 
-            this.номераТелефоновToolStripMenuItem.Name = "номераТелефоновToolStripMenuItem";
-            this.номераТелефоновToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
-            this.номераТелефоновToolStripMenuItem.Text = "Номера телефонов";
-            // 
-            // помощьToolStripMenuItem
-            // 
-            this.помощьToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.оПрограммеToolStripMenuItem});
-            this.помощьToolStripMenuItem.Name = "помощьToolStripMenuItem";
-            this.помощьToolStripMenuItem.Size = new System.Drawing.Size(68, 20);
-            this.помощьToolStripMenuItem.Text = "Помощь";
-            // 
-            // оПрограммеToolStripMenuItem
-            // 
-            this.оПрограммеToolStripMenuItem.Name = "оПрограммеToolStripMenuItem";
-            this.оПрограммеToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
-            this.оПрограммеToolStripMenuItem.Text = "О программе";
             // 
             // MainToolStrip
             // 
@@ -135,7 +50,7 @@
             this.GroupToolStripButton,
             this.SeparatorToolStripButton,
             this.ExitToolStripButton});
-            this.MainToolStrip.Location = new System.Drawing.Point(0, 24);
+            this.MainToolStrip.Location = new System.Drawing.Point(0, 0);
             this.MainToolStrip.Name = "MainToolStrip";
             this.MainToolStrip.Size = new System.Drawing.Size(884, 25);
             this.MainToolStrip.TabIndex = 1;
@@ -149,6 +64,7 @@
             this.ContactToolStripButton.Name = "ContactToolStripButton";
             this.ContactToolStripButton.Size = new System.Drawing.Size(63, 22);
             this.ContactToolStripButton.Text = "Контакты";
+            this.ContactToolStripButton.Click += new System.EventHandler(this.ContactToolStripButton_Click);
             // 
             // GroupToolStripButton
             // 
@@ -158,6 +74,12 @@
             this.GroupToolStripButton.Name = "GroupToolStripButton";
             this.GroupToolStripButton.Size = new System.Drawing.Size(53, 22);
             this.GroupToolStripButton.Text = "Группы";
+            this.GroupToolStripButton.Click += new System.EventHandler(this.GroupToolStripButton_Click);
+            // 
+            // SeparatorToolStripButton
+            // 
+            this.SeparatorToolStripButton.Name = "SeparatorToolStripButton";
+            this.SeparatorToolStripButton.Size = new System.Drawing.Size(6, 25);
             // 
             // ExitToolStripButton
             // 
@@ -167,6 +89,7 @@
             this.ExitToolStripButton.Name = "ExitToolStripButton";
             this.ExitToolStripButton.Size = new System.Drawing.Size(30, 22);
             this.ExitToolStripButton.Text = "Exit";
+            this.ExitToolStripButton.Click += new System.EventHandler(this.ExitToolStripButton_Click);
             // 
             // СontextMenuStrip
             // 
@@ -195,11 +118,6 @@
             this.выходToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
             this.выходToolStripMenuItem.Text = "Выход";
             // 
-            // SeparatorToolStripButton
-            // 
-            this.SeparatorToolStripButton.Name = "SeparatorToolStripButton";
-            this.SeparatorToolStripButton.Size = new System.Drawing.Size(6, 25);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -207,15 +125,11 @@
             this.ClientSize = new System.Drawing.Size(884, 561);
             this.ContextMenuStrip = this.СontextMenuStrip;
             this.Controls.Add(this.MainToolStrip);
-            this.Controls.Add(this.MaiMenuStrip);
-            this.MainMenuStrip = this.MaiMenuStrip;
             this.MinimumSize = new System.Drawing.Size(900, 600);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Телефонный справочник";
             this.Load += new System.EventHandler(this.Form1_Load);
-            this.MaiMenuStrip.ResumeLayout(false);
-            this.MaiMenuStrip.PerformLayout();
             this.MainToolStrip.ResumeLayout(false);
             this.MainToolStrip.PerformLayout();
             this.СontextMenuStrip.ResumeLayout(false);
@@ -225,17 +139,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.MenuStrip MaiMenuStrip;
-        private System.Windows.Forms.ToolStripMenuItem файлToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem справочникиToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem контактыToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem адресаToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem организацииToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem группыToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem номераТелефоновToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem помощьToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem оПрограммеToolStripMenuItem;
         private System.Windows.Forms.ToolStrip MainToolStrip;
         private System.Windows.Forms.ToolStripButton ContactToolStripButton;
         private System.Windows.Forms.ToolStripButton GroupToolStripButton;

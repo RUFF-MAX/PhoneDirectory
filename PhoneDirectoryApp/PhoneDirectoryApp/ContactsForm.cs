@@ -8,32 +8,32 @@ using System.Windows.Forms;
 namespace PhoneDirectoryApp
 {
     /// <summary>
-    /// Форма для отображения и управления контактами.
+    /// Форма для отображения, навигации и управления контактами.
     /// </summary>
     public partial class ContactsForm : Form
     {
         /// <summary>
-        /// Конструктор формы. Инициализирует все компоненты, созданные в дизайнере.
+        /// Адаптер для выполнения SQL-запроса и заполнения таблицы данных.
+        /// </summary>
+        private SqlDataAdapter _adapter;
+
+        /// <summary>
+        /// Локальное хранилище данных, полученных из базы.
+        /// </summary>
+        private DataTable _dataTable;
+
+        /// <summary>
+        /// Посредник между данными и элементами интерфейса.
+        /// </summary>
+        private BindingSource _bindingSource;
+
+        /// <summary>
+        /// Конструктор формы.
         /// </summary>
         public ContactsForm()
         {
             InitializeComponent();
         }
-
-        /// <summary>
-        /// Адаптер для получения данных из базы данных.
-        /// </summary>
-        private SqlDataAdapter _adapter;
-
-        /// <summary>
-        /// Таблица данных, содержащая контакты.
-        /// </summary>
-        private DataTable _dataTable;
-
-        /// <summary>
-        /// Источник привязки данных для синхронизации UI и данных.
-        /// </summary>
-        private BindingSource _bindingSource;
 
         /// <summary>
         /// Событие загрузки формы.
@@ -45,24 +45,28 @@ namespace PhoneDirectoryApp
         }
 
         /// <summary>
-        /// Загружает данные контактов из базы данных и связывает их с элементами UI.
+        /// Загружает контакты из базы данных и связывает их с элементами интерфейса.
         /// </summary>
         private void LoadData()
         {
             try
             {
                 SqlConnection connection = DatabaseConnection.GetInstance().GetConnection();
+
                 string query = @"SELECT 
-                k.id_контакта,
-                k.имя,
-                k.фамилия,
-                k.дата_добавления,
-                k.фото_контакта,
-                a.город + ', ' + a.улица AS адрес,
-                o.название AS организация
-            FROM КОНТАКТ k
-            LEFT JOIN АДРЕС a ON k.id_адреса = a.id_адреса
-            LEFT JOIN МЕСТО_РАБОТЫ_УЧЕБЫ o ON k.id_организации = o.id_организации";
+                k.Id_Контакта,
+                k.Имя,
+                k.Фамилия,
+                k.Дата_Добавления,
+                k.Фото_Контакта,
+                RTRIM(ISNULL(a.Страна, '')) + ', ' + 
+                RTRIM(ISNULL(a.Город, '')) + ', ' + 
+                RTRIM(ISNULL(a.Улица, '')) AS Адрес,
+                o.Название AS Организация
+                FROM Контакт k
+                LEFT JOIN Адрес a ON k.Id_Адреса = a.Id_Адреса
+                LEFT JOIN Место_Работы_Учебы o 
+                ON k.Id_Организации = o.Id_Организации";
 
                 _adapter = new SqlDataAdapter(query, connection);
                 _dataTable = new DataTable();
@@ -71,40 +75,51 @@ namespace PhoneDirectoryApp
                 _bindingSource = new BindingSource();
                 _bindingSource.DataSource = _dataTable;
 
+                ContactDataGridView.AutoGenerateColumns = false;
                 ContactDataGridView.DataSource = _bindingSource;
                 ContactsBindingNavigator.BindingSource = _bindingSource;
 
-                NameTextBox.DataBindings.Clear();
-                SurnameTextBox.DataBindings.Clear();
-                NameTextBox.DataBindings.Add("Text", _bindingSource, "имя");
-                SurnameTextBox.DataBindings.Add("Text", _bindingSource, "фамилия");
+                ContactDataGridView.Columns["NameColumn"].DataPropertyName = "Имя";
+                ContactDataGridView.Columns["SurnameColumn"].DataPropertyName = "Фамилия";
+                ContactDataGridView.Columns["DateColumn"].DataPropertyName = "Дата_Добавления";
+                ContactDataGridView.Columns["AddressColumn"].DataPropertyName = "Адрес";
+                ContactDataGridView.Columns["OrganizationColumn"].DataPropertyName = "Организация";
+                ContactDataGridView.Columns["PhotoColumn"].DataPropertyName = "Фото_Контакта";
+                ContactDataGridView.Columns["PhotoColumn"].Visible = false;
+                ContactDataGridView.RowHeadersVisible = false;
 
                 ContactDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                 ContactDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
                 ContactDataGridView.ReadOnly = true;
                 ContactDataGridView.AllowUserToAddRows = false;
-                ContactDataGridView.Columns["id_контакта"].Visible = false;
-                ContactDataGridView.Columns["фото_контакта"].Visible = false;
 
-                ContactDataGridView.Columns["имя"].DataPropertyName = "имя";
-                ContactDataGridView.Columns["фамилия"].DataPropertyName = "фамилия";
-                ContactDataGridView.Columns["дата_добавления"].DataPropertyName = "дата_добавления";
-                ContactDataGridView.Columns["адрес"].DataPropertyName = "адрес";
-                ContactDataGridView.Columns["организация"].DataPropertyName = "организация";
+                NameTextBox.DataBindings.Clear();
+                SurnameTextBox.DataBindings.Clear();
+                NameTextBox.DataBindings.Add("Text", _bindingSource, "Имя");
+                SurnameTextBox.DataBindings.Add("Text", _bindingSource, "Фамилия");
+
+                DateCreationTimePicker.DataBindings.Clear();
+                DateCreationTimePicker.DataBindings.Add(
+                    "Value",
+                    _bindingSource,
+                    "Дата_Добавления",
+                    true,
+                    DataSourceUpdateMode.OnPropertyChanged,
+                    DateTime.Today);
 
                 _bindingSource.PositionChanged += BindingSource_PositionChanged;
+
                 ShowCurrentPhoto();
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 MessageBox.Show("Ошибка загрузки данных: " + ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         /// <summary>
-        /// Обработчик изменения текущей позиции в BindingSource.
+        /// Обрабатывает смену текущей записи.
         /// </summary>
-
         private void BindingSource_PositionChanged(object sender, EventArgs e)
         {
             ShowCurrentPhoto();
@@ -124,14 +139,14 @@ namespace PhoneDirectoryApp
             DataRowView row = _bindingSource.Current as DataRowView;
             if (row == null) return;
 
-            object PhotoValue = row["фото_контакта"];
+            object photoValue = row["Фото_Контакта"];
 
-            if (PhotoValue != null && PhotoValue != DBNull.Value)
+            if (photoValue != DBNull.Value)
             {
-                byte[] imageBytes = (byte[])PhotoValue;
+                byte[] imageBytes = (byte[])photoValue;
                 using (MemoryStream ms = new MemoryStream(imageBytes))
                 {
-                    PhotoPictureBox.Image = new Bitmap(Image.FromStream(ms));
+                    PhotoPictureBox.Image = Image.FromStream(ms);
                 }
                 PhotoPictureBox.SizeMode = PictureBoxSizeMode.Zoom;
             }
@@ -150,23 +165,23 @@ namespace PhoneDirectoryApp
             {
                 SqlConnection connection = DatabaseConnection.GetInstance().GetConnection();
 
-                SqlDataAdapter adapterAddress = new SqlDataAdapter(
-                "SELECT id_адреса, город + ', ' + улица AS адрес FROM АДРЕС", connection);
+                SqlDataAdapter adapterAddress = new SqlDataAdapter("SELECT Id_Адреса, Город + ', ' + Улица AS Адрес FROM Адрес", connection);
+
                 DataTable dtAddress = new DataTable();
                 adapterAddress.Fill(dtAddress);
 
                 AddressComboBox.DataSource = dtAddress;
                 AddressComboBox.DisplayMember = "Адрес";
-                AddressComboBox.ValueMember = "id_адреса";
+                AddressComboBox.ValueMember = "Id_Адреса";
 
-                SqlDataAdapter adapterOrganization = new SqlDataAdapter(
-                "SELECT id_организации, название FROM МЕСТО_РАБОТЫ_УЧЕБЫ", connection);
+                SqlDataAdapter adapterOrganization = new SqlDataAdapter("SELECT Id_Организации, Название FROM Место_Работы_Учебы", connection);
+
                 DataTable dtOrganization = new DataTable();
                 adapterOrganization.Fill(dtOrganization);
 
                 OrganizationComboBox.DataSource = dtOrganization;
                 OrganizationComboBox.DisplayMember = "Название";
-                OrganizationComboBox.ValueMember = "id_организации";
+                OrganizationComboBox.ValueMember = "Id_Организации";
             }
             catch (Exception ex)
             {
@@ -175,53 +190,54 @@ namespace PhoneDirectoryApp
         }
 
         /// <summary>
-        /// Обработчик нажатия кнопки "Загрузить фото".
+        /// Загружает фотографию контакта и сохраняет её в базу данных.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void UploadPhotoButton_Click(object sender, EventArgs e)
         {
             if (ContactDataGridView.CurrentRow == null)
             {
-                MessageBox.Show("Выберите контакт в таблице.", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Выберите контакт.", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             OpenFileDialog dialog = new OpenFileDialog();
             dialog.Filter = "Изображения|*.jpg;*.jpeg;*.png;*.bmp";
-            dialog.Title = "Выберите фото контакта";
 
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                Image image = Image.FromFile(dialog.FileName);
-                PhotoPictureBox.Image = image;
-                PhotoPictureBox.SizeMode = PictureBoxSizeMode.Zoom;
-
-                byte[] imageBytes;
-                using (MemoryStream ms = new MemoryStream())
+                try
                 {
-                    image.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
-                    imageBytes = ms.ToArray();
+                    Image image = Image.FromFile(dialog.FileName);
+                    PhotoPictureBox.Image = image;
+
+                    byte[] imageBytes;
+                    using (MemoryStream ms = new MemoryStream())
+                    {
+                        image.Save(ms,
+                            System.Drawing.Imaging.ImageFormat.Jpeg);
+                        imageBytes = ms.ToArray();
+                    }
+
+                    int id = Convert.ToInt32(ContactDataGridView.CurrentRow.Cells["Id_Контакта"].Value);
+
+                    SqlConnection connection = DatabaseConnection.GetInstance().GetConnection();
+                    SqlCommand cmd = new SqlCommand("UPDATE Контакт SET Фото_Контакта=@Фото WHERE Id_Контакта=@Id", connection);
+
+                    cmd.Parameters.AddWithValue("@Фото", imageBytes);
+                    cmd.Parameters.AddWithValue("@Id", id);
+                    cmd.ExecuteNonQuery();
+
+                    DataRowView row = _bindingSource.Current as DataRowView;
+                    if (row != null)
+                    {
+                        row["Фото_Контакта"] = imageBytes;
+                    }
+                    MessageBox.Show("Фото сохранено.");
                 }
-
-                int idКонтакта = Convert.ToInt32(ContactDataGridView.CurrentRow.Cells["id_контакта"].Value);
-                SqlConnection connection =
-                        DatabaseConnection.GetInstance().GetConnection();
-                SqlCommand cmd = new SqlCommand(
-                    "UPDATE КОНТАКТ SET фото_контакта = @фото " +
-                    "WHERE id_контакта = @id", connection);
-                cmd.Parameters.AddWithValue("@фото", imageBytes);
-                cmd.Parameters.AddWithValue("@id", idКонтакта);
-                cmd.ExecuteNonQuery();
-
-                DataRowView row = _bindingSource.Current as DataRowView;
-                if (row != null)
+                catch (Exception ex)
                 {
-                    row["фото_контакта"] = imageBytes;
+                    MessageBox.Show("Ошибка: " + ex.Message);
                 }
-
-                MessageBox.Show("Фото сохранено успешно.", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
             }
         }
     }

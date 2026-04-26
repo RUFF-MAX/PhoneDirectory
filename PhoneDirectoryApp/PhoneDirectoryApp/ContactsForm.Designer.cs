@@ -43,7 +43,14 @@
             this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.BindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
             this.EditingPanel = new System.Windows.Forms.Panel();
+            this.OrganizationComboBox = new System.Windows.Forms.ComboBox();
+            this.AddressComboBox = new System.Windows.Forms.ComboBox();
+            this.DateCreationTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.UploadPhotoButton = new System.Windows.Forms.Button();
+            this.PhotoPictureBox = new System.Windows.Forms.PictureBox();
+            this.PhotoLabel = new System.Windows.Forms.Label();
             this.OrganizationLabel = new System.Windows.Forms.Label();
             this.AddressLabel = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -51,18 +58,11 @@
             this.SurnameTextBox = new System.Windows.Forms.TextBox();
             this.SurnameLabel = new System.Windows.Forms.Label();
             this.Namelabel = new System.Windows.Forms.Label();
-            this.PhotoLabel = new System.Windows.Forms.Label();
-            this.PhotoPictureBox = new System.Windows.Forms.PictureBox();
-            this.UploadPhotoButton = new System.Windows.Forms.Button();
-            this.DateCreationTimePicker = new System.Windows.Forms.DateTimePicker();
-            this.AddressComboBox = new System.Windows.Forms.ComboBox();
-            this.OrganizationComboBox = new System.Windows.Forms.ComboBox();
-            this.BindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
             this.NameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SurnameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DateColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AddressColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.OrganizationColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.AddressColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OrganizationColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PhotoColumn = new System.Windows.Forms.DataGridViewImageColumn();
             ((System.ComponentModel.ISupportInitialize)(this.ContactDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ContactsBindingNavigator)).BeginInit();
@@ -203,6 +203,16 @@
             this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
             this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
+            // BindingNavigatorSaveItem
+            // 
+            this.BindingNavigatorSaveItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.BindingNavigatorSaveItem.Image = ((System.Drawing.Image)(resources.GetObject("BindingNavigatorSaveItem.Image")));
+            this.BindingNavigatorSaveItem.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BindingNavigatorSaveItem.Name = "BindingNavigatorSaveItem";
+            this.BindingNavigatorSaveItem.Size = new System.Drawing.Size(35, 22);
+            this.BindingNavigatorSaveItem.Text = "Save";
+            this.BindingNavigatorSaveItem.ToolTipText = "Сохранить изменения в базу данных";
+            // 
             // EditingPanel
             // 
             this.EditingPanel.BackColor = System.Drawing.SystemColors.Control;
@@ -225,6 +235,58 @@
             this.EditingPanel.Name = "EditingPanel";
             this.EditingPanel.Size = new System.Drawing.Size(800, 150);
             this.EditingPanel.TabIndex = 2;
+            // 
+            // OrganizationComboBox
+            // 
+            this.OrganizationComboBox.FormattingEnabled = true;
+            this.OrganizationComboBox.Location = new System.Drawing.Point(339, 57);
+            this.OrganizationComboBox.Name = "OrganizationComboBox";
+            this.OrganizationComboBox.Size = new System.Drawing.Size(191, 21);
+            this.OrganizationComboBox.TabIndex = 15;
+            // 
+            // AddressComboBox
+            // 
+            this.AddressComboBox.FormattingEnabled = true;
+            this.AddressComboBox.Location = new System.Drawing.Point(339, 23);
+            this.AddressComboBox.Name = "AddressComboBox";
+            this.AddressComboBox.Size = new System.Drawing.Size(191, 21);
+            this.AddressComboBox.TabIndex = 14;
+            // 
+            // DateCreationTimePicker
+            // 
+            this.DateCreationTimePicker.Location = new System.Drawing.Point(84, 91);
+            this.DateCreationTimePicker.Name = "DateCreationTimePicker";
+            this.DateCreationTimePicker.Size = new System.Drawing.Size(128, 20);
+            this.DateCreationTimePicker.TabIndex = 13;
+            // 
+            // UploadPhotoButton
+            // 
+            this.UploadPhotoButton.Location = new System.Drawing.Point(704, 70);
+            this.UploadPhotoButton.Name = "UploadPhotoButton";
+            this.UploadPhotoButton.Size = new System.Drawing.Size(83, 34);
+            this.UploadPhotoButton.TabIndex = 12;
+            this.UploadPhotoButton.Text = "Upload Photo";
+            this.UploadPhotoButton.UseVisualStyleBackColor = true;
+            this.UploadPhotoButton.Click += new System.EventHandler(this.UploadPhotoButton_Click);
+            // 
+            // PhotoPictureBox
+            // 
+            this.PhotoPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.PhotoPictureBox.Location = new System.Drawing.Point(588, 25);
+            this.PhotoPictureBox.Name = "PhotoPictureBox";
+            this.PhotoPictureBox.Size = new System.Drawing.Size(110, 110);
+            this.PhotoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.PhotoPictureBox.TabIndex = 11;
+            this.PhotoPictureBox.TabStop = false;
+            // 
+            // PhotoLabel
+            // 
+            this.PhotoLabel.AutoSize = true;
+            this.PhotoLabel.Location = new System.Drawing.Point(624, 9);
+            this.PhotoLabel.Name = "PhotoLabel";
+            this.PhotoLabel.Size = new System.Drawing.Size(35, 13);
+            this.PhotoLabel.TabIndex = 10;
+            this.PhotoLabel.Text = "Photo";
             // 
             // OrganizationLabel
             // 
@@ -285,68 +347,6 @@
             this.Namelabel.TabIndex = 0;
             this.Namelabel.Text = "Name:";
             // 
-            // PhotoLabel
-            // 
-            this.PhotoLabel.AutoSize = true;
-            this.PhotoLabel.Location = new System.Drawing.Point(624, 9);
-            this.PhotoLabel.Name = "PhotoLabel";
-            this.PhotoLabel.Size = new System.Drawing.Size(35, 13);
-            this.PhotoLabel.TabIndex = 10;
-            this.PhotoLabel.Text = "Photo";
-            // 
-            // PhotoPictureBox
-            // 
-            this.PhotoPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.PhotoPictureBox.Location = new System.Drawing.Point(588, 25);
-            this.PhotoPictureBox.Name = "PhotoPictureBox";
-            this.PhotoPictureBox.Size = new System.Drawing.Size(110, 110);
-            this.PhotoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.PhotoPictureBox.TabIndex = 11;
-            this.PhotoPictureBox.TabStop = false;
-            // 
-            // UploadPhotoButton
-            // 
-            this.UploadPhotoButton.Location = new System.Drawing.Point(704, 70);
-            this.UploadPhotoButton.Name = "UploadPhotoButton";
-            this.UploadPhotoButton.Size = new System.Drawing.Size(83, 34);
-            this.UploadPhotoButton.TabIndex = 12;
-            this.UploadPhotoButton.Text = "Upload Photo";
-            this.UploadPhotoButton.UseVisualStyleBackColor = true;
-            this.UploadPhotoButton.Click += new System.EventHandler(this.UploadPhotoButton_Click);
-            // 
-            // DateCreationTimePicker
-            // 
-            this.DateCreationTimePicker.Location = new System.Drawing.Point(84, 91);
-            this.DateCreationTimePicker.Name = "DateCreationTimePicker";
-            this.DateCreationTimePicker.Size = new System.Drawing.Size(128, 20);
-            this.DateCreationTimePicker.TabIndex = 13;
-            // 
-            // AddressComboBox
-            // 
-            this.AddressComboBox.FormattingEnabled = true;
-            this.AddressComboBox.Location = new System.Drawing.Point(339, 23);
-            this.AddressComboBox.Name = "AddressComboBox";
-            this.AddressComboBox.Size = new System.Drawing.Size(191, 21);
-            this.AddressComboBox.TabIndex = 14;
-            // 
-            // OrganizationComboBox
-            // 
-            this.OrganizationComboBox.FormattingEnabled = true;
-            this.OrganizationComboBox.Location = new System.Drawing.Point(339, 57);
-            this.OrganizationComboBox.Name = "OrganizationComboBox";
-            this.OrganizationComboBox.Size = new System.Drawing.Size(191, 21);
-            this.OrganizationComboBox.TabIndex = 15;
-            // 
-            // BindingNavigatorSaveItem
-            // 
-            this.BindingNavigatorSaveItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.BindingNavigatorSaveItem.Image = ((System.Drawing.Image)(resources.GetObject("BindingNavigatorSaveItem.Image")));
-            this.BindingNavigatorSaveItem.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.BindingNavigatorSaveItem.Name = "BindingNavigatorSaveItem";
-            this.BindingNavigatorSaveItem.Size = new System.Drawing.Size(35, 22);
-            this.BindingNavigatorSaveItem.Text = "Save";
-            this.BindingNavigatorSaveItem.ToolTipText = "Сохранить изменения в базу данных";
-            // 
             // NameColumn
             // 
             this.NameColumn.HeaderText = "Name";
@@ -364,13 +364,18 @@
             // 
             // AddressColumn
             // 
+            this.AddressColumn.FillWeight = 150F;
             this.AddressColumn.HeaderText = "Address";
             this.AddressColumn.Name = "AddressColumn";
+            this.AddressColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.AddressColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // OrganizationColumn
             // 
             this.OrganizationColumn.HeaderText = "Organization";
             this.OrganizationColumn.Name = "OrganizationColumn";
+            this.OrganizationColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.OrganizationColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // PhotoColumn
             // 
@@ -433,8 +438,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn NameColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn SurnameColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn DateColumn;
-        private System.Windows.Forms.DataGridViewComboBoxColumn AddressColumn;
-        private System.Windows.Forms.DataGridViewComboBoxColumn OrganizationColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AddressColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OrganizationColumn;
         private System.Windows.Forms.DataGridViewImageColumn PhotoColumn;
     }
 }
