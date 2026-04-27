@@ -29,8 +29,21 @@ namespace PhoneDirectoryApp
         /// <summary>
         /// Событие загрузки формы.
         /// </summary>
-        private void Form1_Load(object sender, EventArgs e)
+        private void MainForm_Load(object sender, EventArgs e)
         {
+            this.Left = Properties.Settings.Default.MainFormLeft;
+            this.Top = Properties.Settings.Default.MainFormTop;
+            this.Width = Properties.Settings.Default.MainFormWidth;
+            this.Height = Properties.Settings.Default.MainFormHeight;
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Properties.Settings.Default.MainFormLeft = this.Left;
+            Properties.Settings.Default.MainFormTop = this.Top;
+            Properties.Settings.Default.MainFormWidth = this.Width;
+            Properties.Settings.Default.MainFormHeight = this.Height;
+            Properties.Settings.Default.Save();
         }
 
         /// <summary>
