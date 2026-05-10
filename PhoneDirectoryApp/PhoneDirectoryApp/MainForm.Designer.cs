@@ -36,9 +36,9 @@
             this.SeparatorToolStripButton = new System.Windows.Forms.ToolStripSeparator();
             this.ExitToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.СontextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.обновитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.обновитьToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.выходToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ContactsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.GroupsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.ExitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MainToolStrip.SuspendLayout();
             this.СontextMenuStrip.SuspendLayout();
             this.SuspendLayout();
@@ -94,29 +94,32 @@
             // СontextMenuStrip
             // 
             this.СontextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.обновитьToolStripMenuItem,
-            this.обновитьToolStripMenuItem1,
-            this.выходToolStripMenuItem});
+            this.ContactsToolStripMenuItem,
+            this.GroupsToolStripMenuItem1,
+            this.ExitToolStripMenuItem});
             this.СontextMenuStrip.Name = "contextMenuStrip1";
-            this.СontextMenuStrip.Size = new System.Drawing.Size(129, 70);
+            this.СontextMenuStrip.Size = new System.Drawing.Size(181, 92);
             // 
-            // обновитьToolStripMenuItem
+            // ContactsToolStripMenuItem
             // 
-            this.обновитьToolStripMenuItem.Name = "обновитьToolStripMenuItem";
-            this.обновитьToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
-            this.обновитьToolStripMenuItem.Text = "Открыть";
+            this.ContactsToolStripMenuItem.Name = "ContactsToolStripMenuItem";
+            this.ContactsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.ContactsToolStripMenuItem.Text = "Контакты";
+            this.ContactsToolStripMenuItem.Click += new System.EventHandler(this.ContactsToolStripMenuItem_Click);
             // 
-            // обновитьToolStripMenuItem1
+            // GroupsToolStripMenuItem1
             // 
-            this.обновитьToolStripMenuItem1.Name = "обновитьToolStripMenuItem1";
-            this.обновитьToolStripMenuItem1.Size = new System.Drawing.Size(128, 22);
-            this.обновитьToolStripMenuItem1.Text = "Обновить";
+            this.GroupsToolStripMenuItem1.Name = "GroupsToolStripMenuItem1";
+            this.GroupsToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.GroupsToolStripMenuItem1.Text = "Группы";
+            this.GroupsToolStripMenuItem1.Click += new System.EventHandler(this.GroupsToolStripMenuItem1_Click);
             // 
-            // выходToolStripMenuItem
+            // ExitToolStripMenuItem
             // 
-            this.выходToolStripMenuItem.Name = "выходToolStripMenuItem";
-            this.выходToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
-            this.выходToolStripMenuItem.Text = "Выход";
+            this.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem";
+            this.ExitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.ExitToolStripMenuItem.Text = "Выход";
+            this.ExitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -144,9 +147,9 @@
         private System.Windows.Forms.ToolStripButton GroupToolStripButton;
         private System.Windows.Forms.ToolStripButton ExitToolStripButton;
         private System.Windows.Forms.ContextMenuStrip СontextMenuStrip;
-        private System.Windows.Forms.ToolStripMenuItem обновитьToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem обновитьToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem выходToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ContactsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem GroupsToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem ExitToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator SeparatorToolStripButton;
     }
 }

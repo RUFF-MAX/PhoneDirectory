@@ -93,7 +93,7 @@ namespace PhoneDirectoryApp
         }
 
         /// <summary>
-        /// Обработчик кнопки открытия контактов.
+        /// Обработчик кнопки открытия контактов в ToolStrip.
         /// </summary>
         private void ContactToolStripButton_Click(object sender, EventArgs e)
         {
@@ -101,7 +101,7 @@ namespace PhoneDirectoryApp
         }
 
         /// <summary>
-        /// Обработчик кнопки открытия групп.
+        /// Обработчик кнопки открытия групп в ToolStrip.
         /// </summary>
         private void GroupToolStripButton_Click(object sender, EventArgs e)
         {
@@ -109,9 +109,39 @@ namespace PhoneDirectoryApp
         }
 
         /// <summary>
-        /// Обработчик кнопки выхода из приложения.
+        /// Обработчик кнопки выхода из приложения в ToolStrip.
         /// </summary>
         private void ExitToolStripButton_Click(object sender, EventArgs e)
+        {
+            ExitApp();
+        }
+
+        /// <summary>
+        /// Обработчик кнопки открытия контактов в ContextMenu.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ContactsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenContacts();
+        }
+
+        /// <summary>
+        /// Обработчик кнопки открытия групп в ContextMenu.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void GroupsToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            OpenGroups();
+        }
+
+        /// <summary>
+        /// Обработчик кнопки выхода из приложения в ContextMenu.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ExitApp();
         }

@@ -194,9 +194,10 @@ namespace PhoneDirectoryApp
         /// </summary>
         private void UploadPhotoButton_Click(object sender, EventArgs e)
         {
-            if (ContactDataGridView.CurrentRow == null)
+            if (_bindingSource == null || _bindingSource.Current == null)
             {
-                MessageBox.Show("Выберите контакт.", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Выберите контакт.", "Внимание",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -209,36 +210,39 @@ namespace PhoneDirectoryApp
                 {
                     Image image = Image.FromFile(dialog.FileName);
                     PhotoPictureBox.Image = image;
+                    PhotoPictureBox.SizeMode = PictureBoxSizeMode.Zoom;
 
                     byte[] imageBytes;
                     using (MemoryStream ms = new MemoryStream())
                     {
-                        image.Save(ms,
-                            System.Drawing.Imaging.ImageFormat.Jpeg);
+                        image.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
                         imageBytes = ms.ToArray();
                     }
 
-                    int id = Convert.ToInt32(ContactDataGridView.CurrentRow.Cells["Id_Контакта"].Value);
+                    DataRowView currentRow = _bindingSource.Current as DataRowView;
+                    int id = Convert.ToInt32(currentRow["Id_Контакта"]);
 
-                    SqlConnection connection = DatabaseConnection.GetInstance().GetConnection();
-                    SqlCommand cmd = new SqlCommand("UPDATE Контакт SET Фото_Контакта=@Фото WHERE Id_Контакта=@Id", connection);
-
+                    SqlConnection connection =
+                        DatabaseConnection.GetInstance().GetConnection();
+                    SqlCommand cmd = new SqlCommand(
+                        "UPDATE Контакт SET Фото_Контакта=@Фото WHERE Id_Контакта=@Id",
+                        connection);
                     cmd.Parameters.AddWithValue("@Фото", imageBytes);
                     cmd.Parameters.AddWithValue("@Id", id);
                     cmd.ExecuteNonQuery();
 
-                    DataRowView row = _bindingSource.Current as DataRowView;
-                    if (row != null)
-                    {
-                        row["Фото_Контакта"] = imageBytes;
-                    }
-                    MessageBox.Show("Фото сохранено.");
+                    currentRow["Фото_Контакта"] = imageBytes;
+
+                    MessageBox.Show("Фото сохранено.", "Успех",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Ошибка: " + ex.Message);
+                    MessageBox.Show("Ошибка: " + ex.Message, "Ошибка",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+
         }
     }
 }
