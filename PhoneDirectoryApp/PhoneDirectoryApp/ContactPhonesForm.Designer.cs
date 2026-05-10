@@ -90,6 +90,7 @@
             this.SearchTextBox.Name = "SearchTextBox";
             this.SearchTextBox.Size = new System.Drawing.Size(179, 21);
             this.SearchTextBox.TabIndex = 2;
+            this.SearchTextBox.TextChanged += new System.EventHandler(this.SearchTextBox_TextChanged);
             // 
             // SearchButton
             // 
@@ -100,6 +101,7 @@
             this.SearchButton.TabIndex = 2;
             this.SearchButton.Text = "Search";
             this.SearchButton.UseVisualStyleBackColor = true;
+            this.SearchButton.Click += new System.EventHandler(this.SearchButton_Click);
             // 
             // ResetButton
             // 
@@ -110,6 +112,7 @@
             this.ResetButton.TabIndex = 2;
             this.ResetButton.Text = "Reset";
             this.ResetButton.UseVisualStyleBackColor = true;
+            this.ResetButton.Click += new System.EventHandler(this.ResetButton_Click);
             // 
             // ContactsBindingNavigator
             // 
@@ -138,7 +141,6 @@
             this.ContactsBindingNavigator.Size = new System.Drawing.Size(395, 25);
             this.ContactsBindingNavigator.TabIndex = 2;
             this.ContactsBindingNavigator.Text = "ContactsBindingNavigator";
-            this.ContactsBindingNavigator.RefreshItems += new System.EventHandler(this.ContactsBindingNavigator_RefreshItems);
             // 
             // bindingNavigatorMoveFirstItem
             // 
@@ -234,7 +236,6 @@
             this.ContactsDataGridView.Name = "ContactsDataGridView";
             this.ContactsDataGridView.Size = new System.Drawing.Size(395, 192);
             this.ContactsDataGridView.TabIndex = 3;
-            this.ContactsDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ContactsDataGridView_CellContentClick);
             // 
             // label1
             // 
