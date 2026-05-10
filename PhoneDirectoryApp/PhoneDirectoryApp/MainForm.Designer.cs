@@ -62,8 +62,8 @@
             this.ContactToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("ContactToolStripButton.Image")));
             this.ContactToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ContactToolStripButton.Name = "ContactToolStripButton";
-            this.ContactToolStripButton.Size = new System.Drawing.Size(63, 22);
-            this.ContactToolStripButton.Text = "Контакты";
+            this.ContactToolStripButton.Size = new System.Drawing.Size(58, 22);
+            this.ContactToolStripButton.Text = "Contacts";
             this.ContactToolStripButton.Click += new System.EventHandler(this.ContactToolStripButton_Click);
             // 
             // GroupToolStripButton
@@ -72,8 +72,8 @@
             this.GroupToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("GroupToolStripButton.Image")));
             this.GroupToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.GroupToolStripButton.Name = "GroupToolStripButton";
-            this.GroupToolStripButton.Size = new System.Drawing.Size(53, 22);
-            this.GroupToolStripButton.Text = "Группы";
+            this.GroupToolStripButton.Size = new System.Drawing.Size(49, 22);
+            this.GroupToolStripButton.Text = "Groups";
             this.GroupToolStripButton.Click += new System.EventHandler(this.GroupToolStripButton_Click);
             // 
             // SeparatorToolStripButton
@@ -98,26 +98,26 @@
             this.GroupsToolStripMenuItem1,
             this.ExitToolStripMenuItem});
             this.СontextMenuStrip.Name = "contextMenuStrip1";
-            this.СontextMenuStrip.Size = new System.Drawing.Size(181, 92);
+            this.СontextMenuStrip.Size = new System.Drawing.Size(127, 70);
             // 
             // ContactsToolStripMenuItem
             // 
             this.ContactsToolStripMenuItem.Name = "ContactsToolStripMenuItem";
-            this.ContactsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.ContactsToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.ContactsToolStripMenuItem.Text = "Контакты";
             this.ContactsToolStripMenuItem.Click += new System.EventHandler(this.ContactsToolStripMenuItem_Click);
             // 
             // GroupsToolStripMenuItem1
             // 
             this.GroupsToolStripMenuItem1.Name = "GroupsToolStripMenuItem1";
-            this.GroupsToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.GroupsToolStripMenuItem1.Size = new System.Drawing.Size(126, 22);
             this.GroupsToolStripMenuItem1.Text = "Группы";
             this.GroupsToolStripMenuItem1.Click += new System.EventHandler(this.GroupsToolStripMenuItem1_Click);
             // 
             // ExitToolStripMenuItem
             // 
             this.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem";
-            this.ExitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.ExitToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.ExitToolStripMenuItem.Text = "Выход";
             this.ExitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
             // 
@@ -131,7 +131,7 @@
             this.MinimumSize = new System.Drawing.Size(900, 600);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            this.Text = "Телефонный справочник";
+            this.Text = "Contacts Directory";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.MainToolStrip.ResumeLayout(false);
             this.MainToolStrip.PerformLayout();
